@@ -11,9 +11,9 @@ SELECT
   HISTORY,
   (CASE
     /* any 5 in history means this customer is risky */
-    WHEN HISTORY LIKE "%5%" THEN -1
+    WHEN HISTORY LIKE "%5%" THEN "risky"
     /* only 0, C or X, so this customer is good */
-    WHEN HISTORY REGEXP "\b(C|X|0)+\b" THEN 1
-    ELSE 0 END
+    WHEN HISTORY REGEXP "\b(C|X|0)+\b" THEN "good"
+    ELSE "moderate" END
   )	AS RATING
 FROM credit_history;
